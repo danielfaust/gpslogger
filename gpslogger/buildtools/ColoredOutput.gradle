@@ -18,7 +18,7 @@ tasks.withType(Test) {
     beforeSuite { suite ->
         if (suite.name.startsWith("Test Run") || suite.name.startsWith("Gradle Worker")) return
 
-        if(suite.parent != null){
+        if(suite.parent != null && suite.className != null){
             out.println("travis_fold:start:" + suite.name +"\r");
             out.println(ANSI_BOLD_WHITE + suite.name + ANSI_RESET )
         }
@@ -38,7 +38,7 @@ tasks.withType(Test) {
     }
 
     afterSuite { desc, result ->
-        if(desc.parent != null){
+        if(desc.parent != null && desc.className != null){
             out.println("travis_fold:end:" + desc.name +"\r");
         }
 
