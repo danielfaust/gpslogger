@@ -24,7 +24,7 @@ before_install:
 
 before_script:
   - echo -e "travis_fold:end:build"
-  - ./gradlew build -x test -Dpre-dex=false
+  - ./gradlew assembleDebugUnitTest -Dpre-dex=false
   - echo -e "travis_fold:start:build"
 
 #  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
