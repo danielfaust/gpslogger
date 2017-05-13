@@ -19,9 +19,10 @@ tasks.withType(Test) {
         if (suite.name.startsWith("Test Run") || suite.name.startsWith("Gradle Worker")) return
 
         if(suite.parent != null){
-            out.println("travis_fold:start:" + ANSI_BOLD_WHITE + suite.name + ANSI_RESET +"\r");
+            out.println("travis_fold:start:" + suite.name +"\r");
+            out.println(ANSI_BOLD_WHITE + suite.name + ANSI_RESET )
         }
-//        out.println("\n" + ANSI_BOLD_WHITE + suite.name + ANSI_RESET )
+
     }
     afterTest { descriptor, result ->
         def indicator = ANSI_WHITE
