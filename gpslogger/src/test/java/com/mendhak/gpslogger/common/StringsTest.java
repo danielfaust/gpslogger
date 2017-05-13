@@ -114,7 +114,7 @@ public class StringsTest {
         assertThat("%HOUR 11PM should be relpaced with 23", actual, is(expected));
 
         when(gc.get(Calendar.HOUR_OF_DAY)).thenReturn(0);
-        expected = "basename_00";
+        expected = "basename_00x";
         actual = Strings.getFormattedCustomFileName("basename_%HOUR", gc, ph);
         assertThat("%HOUR 0 should be relpaced with 00", actual, is(expected));
 
