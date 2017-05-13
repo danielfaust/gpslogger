@@ -34,7 +34,10 @@ tasks.withType(Test) {
     }
 
     afterSuite { desc, result ->
-        out.println("travis_fold:end:" + suite.name);
+        if(desc.parent){
+            out.println("travis_fold:end:" + desc.name);
+        }
+
 
         if (!desc.parent) { // will match the outermost suite
             def failStyle = ANSI_RED
