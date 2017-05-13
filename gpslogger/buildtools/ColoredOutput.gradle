@@ -17,7 +17,10 @@ tasks.withType(Test) {
 
     beforeSuite { suite ->
         if (suite.name.startsWith("Test Run") || suite.name.startsWith("Gradle Worker")) return
-        out.println("travis_fold:start:" + suite.name);
+
+        if(suite.parent != null){
+            out.println("travis_fold:start:" + suite.name +"\r");
+        }
         out.println("\n" + ANSI_BOLD_WHITE + suite.name + ANSI_RESET )
     }
     afterTest { descriptor, result ->
@@ -34,8 +37,8 @@ tasks.withType(Test) {
     }
 
     afterSuite { desc, result ->
-        if(desc.parent){
-            out.println("travis_fold:end:" + desc.name);
+        if(desc.parent != null){
+            out.println("travis_fold:end:" + desc.name +"\r");
         }
 
 
